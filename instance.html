@@ -1,9 +1,9 @@
-<!-- index -->
+<!-- instance -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
-    	<title>Startvue</title>
+    	<title>Startvue Instance</title>
     	<meta name="viewport" content="width=device-width,initial-scale=1">
     	<script src="https://unpkg.com/vue/dist/vue.js"></script>
     	<!-- <link href='{{ url_for("static", filename="css/bootstrap.min.css") }}' rel='stylesheet'>
@@ -25,7 +25,97 @@
 	</header>
 	
 	<body>	
+<!-- instance -->
+	<div id='example'>
+	</div>
+	<div id='v-once'>
+	<span v-once>{{a}}</span>
+	<span >{{b}}</span>
+	</div>
+	<div id='jsExpression'>
+	{{ number + 1 }}<br/>
+	{{ ok ? 'YES' : 'NO' }}<br/>
+	{{ message.split('').reverse().join('') }}<br/>
+	<div v-bind:id="'list-' + id">list-id</div>
+	</div>
+<!-- Computed and watch -->
+	<div id='computed'>
+	</div>
 	
 	
+	
+<!-- v-bind -->
+<!--	<div id='v-bind' v-bind:id='dynamicId'>
+		<button id='v-bind' v-bind:disabled='isButtonDisabled'>Button</button>
+
+	</div> -->
+	
+	
+	<script id='instance'>
+<!-- instance -->
+	var data = {a:1,
+			newTodoText:'',
+			visitCount:0,
+			hideCompletedTodos:false,
+			todos:[],
+			error:null
+		}
+	var vm = new Vue({
+		el:'#example',
+		data : data 
+	})
+	vm.$data === data
+	vm.$el === document.getElementById('example')
+	
+	vm.$watch(
+			'a'
+			,function(newValue,oldValue){
+		console.log(newValue,oldValue)
+	})
+	
+	new Vue({
+		data:{
+			a:1
+		},
+		created: function(){
+			console.log('a is '+ this.a)
+		}
+	})
+	</script>
+	<script id='v-once'>
+	var once = new Vue({
+		el:'#v-once',
+		data:{a:'hey',
+			b:'ohho'
+		}
+	})
+	</script>
+<!--	<script id='v-bind'>
+	var bind = new Vue({
+		el:'#v-bind',
+		data:{
+			id:
+			disabled:'isButtonDisabled',
+		},
+		methods:{
+			function(disabled){
+			disabled}
+		}
+	})
+	</script> -->
+	<script id='jsExpression'>
+	var jsExpression = new Vue({
+		el:'#jsExpression',
+		data:{
+			number : 7,
+			ok: null,
+			message: 'test Js Expressions of Vue',
+			id:10+'?'
+		}
+	})
+	</script>
+<!-- Computed and watch -->
+	<script id='computed'>
+	</script>
 	</body>
 </html>
