@@ -1,0 +1,76 @@
+<!-- class css binding -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<title>Startvue</title>
+    	<meta name="viewport" content="width=device-width,initial-scale=1">
+    	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+    	<!-- <link href='{{ url_for("static", filename="css/bootstrap.min.css") }}' rel='stylesheet'>
+    	<link href='{{ url_for("static", filename="images/favicon.ico") }}' rel='shortcut icon'> -->
+		<link href='static/images/favicon.ico' rel='shortcut icon'>
+	</head>
+	
+	<header>
+	    <!-- 
+	    <div class="navbar-header">
+      		<a class="navbar-brand" href="#">Brand</a>
+    	</div>
+    	
+    	<ul class="nav nav-pills">
+ 			<li role="presentation" class="active"><a href="#">Home</a></li>
+  			<li role="presentation"><a href="#">Profile</a></li>
+  			<li role="presentation"><a href="#">Messages</a></li>
+		</ul>
+		-->
+	</header>
+	
+	<body>	
+<!-- Object Syntax -->
+<!--	<div id='toggleClass' 
+	class='static' v-bind:class='{active:isActive, "text-danger":hasError}'>
+	<p>Yo Homie</p>
+	</div>-->
+	<div id='toggleClass' 
+	class='static' v-bind:class='classObject'>
+	<p>Yo Homie</p>
+	</div>
+	
+	​<div id='computedClass' v-bind:class='classObject'>
+	<p>Yo Homie</p>
+	</div>​
+<!-- Array Syntax 
+	​<div id='computedClass' 
+	class='static' v-bind:class='{active:isActive, "text-danger":hasError}'>
+	<p>Yo Homie</p>-->	
+	</div>​	
+	<script>
+<!-- Array Syntax -->	
+<!-- Object Syntax -->
+	var toggle = new Vue({
+		el:'#computedClass',
+		data:{
+				isActive:true,
+				error:false
+		},
+		computed:{
+			classObject:function(){
+				return {
+					active: this.isActive && !this.error,
+					'text-danger':this.error && this.error.type === 'fatal'
+				}
+			}
+		}	
+	})
+	var toggle = new Vue({
+		el:'#toggleClass',
+		data:{
+			classObject:{
+				isActive:true,
+				hasError:false
+			}
+		}	
+	})
+	</script>
+	</body>
+</html>
